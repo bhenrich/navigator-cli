@@ -86,7 +86,7 @@ namespace Navigator.Rendering
                 case var key when key == keybinds.DirUp:
                     return Directory.GetParent(currentDirectory)?.FullName ?? currentDirectory;
                 case var key when key == keybinds.Exit:
-                    ExitTool(currentDirectory);
+                    ExitApp(currentDirectory);
                     break;
             }
 
@@ -160,11 +160,11 @@ namespace Navigator.Rendering
             Console.Write(prompt);
 
             Console.SetCursorPosition(boxLeft + 2, boxTop + 2);
-            string command = Console.ReadLine();
+            string? command = Console.ReadLine();
 
             if (!string.IsNullOrEmpty(command))
             {
-                ExitToolAndExecuteCommand(command, filePath);
+                ExitAppAndExecuteCommand(command, filePath);
             }
             else
             {
@@ -198,7 +198,7 @@ namespace Navigator.Rendering
             }
         }
 
-        private static void ExitToolAndExecuteCommand(string command, string filePath)
+        private static void ExitAppAndExecuteCommand(string command, string filePath)
         {
             Console.Clear();
             Console.WriteLine($"Executing command: {command} {filePath}");
@@ -208,17 +208,21 @@ namespace Navigator.Rendering
                 Arguments = $"-c \"{command} '{filePath}'\"",
                 UseShellExecute = true,
                 RedirectStandardOutput = false,
+                RedirectStandardInput = false,
                 RedirectStandardError = false,
-                CreateNoWindow = true
+                CreateNoWindow = false
             });
-            Environment.Exit(0); // Exit the tool
+            Environment.Exit(0); 
         }
 
-        private static void ExitTool(string currentDirectory)
+        private static void ExitApp(string currentDirectory)
         {
             Console.Clear();
-            Console.WriteLine($"exit to {currentDirectory}");
-            Environment.Exit(0); // Exit the tool
+            
+            // found out that one does not simply change the parent shell's environment using a child process
+            //Console.WriteLine($"exit to {currentDirectory}");
+            
+            Environment.Exit(0); 
         }
 
         private static ConsoleColor ConvertHexToConsoleColor(string hex)
