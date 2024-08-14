@@ -73,12 +73,13 @@ namespace Navigator.Rendering
                 case var key when key == keybinds.EntryDown:
                     if (selectedIndex < totalItems - 1) selectedIndex++;
                     break;
+                /*
                 case var key when key == keybinds.Open:
                     if (selectedIndex < directories.Count)
                         return directories[selectedIndex];
                     else
                         OpenFilePrompt(files[selectedIndex - directories.Count]);
-                    break;
+                    break; */
                 case var key when key == keybinds.DirDown:
                     if (selectedIndex < directories.Count)
                         return directories[selectedIndex];
@@ -135,7 +136,7 @@ namespace Navigator.Rendering
             Console.SetCursorPosition(0, windowHeight - 4);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Controls:");
-            Console.WriteLine($"Select Up: {config.Keybinds.EntryUp}\t|\tAscend Directory: {config.Keybinds.DirUp}\t|\tOpen/Enter: {config.Keybinds.Open}");
+            Console.WriteLine($"Select Up: {config.Keybinds.EntryUp}\t|\tAscend Directory: {config.Keybinds.DirUp}");
             Console.WriteLine($"Select Down: {config.Keybinds.EntryDown}\t|\tEnter Directory: {config.Keybinds.DirDown}\t|\tExit: {config.Keybinds.Exit}");
 
             Console.ResetColor();

@@ -20,7 +20,7 @@ namespace Navigator.Config
     {
         public string EntryUp { get; set; }
         public string EntryDown { get; set; }
-        public string Open { get; set; }
+        // public string Open { get; set; }
         public string DirDown { get; set; }
         public string DirUp { get; set; }
         public string Exit { get; set; } // New keybind for exiting the tool

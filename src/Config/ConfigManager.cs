@@ -43,7 +43,7 @@ namespace Navigator.Config
                 {
                     EntryUp = "UpArrow",
                     EntryDown = "DownArrow",
-                    Open = "Enter",
+                    // Open = "Enter",
                     DirDown = "RightArrow",
                     DirUp = "LeftArrow",
                     Exit = "Escape"
